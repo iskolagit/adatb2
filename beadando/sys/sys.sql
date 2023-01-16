@@ -19,4 +19,4 @@ GRANT CREATE VIEW TO lib_manager;
 GRANT CREATE SEQUENCE TO lib_manager;
 GRANT CREATE PROCEDURE TO lib_manager;
 GRANT CREATE TYPE TO lib_manager;
-
+GRANT CREATE TRIGGER TO lib_manager;
