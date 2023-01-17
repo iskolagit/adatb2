@@ -44,7 +44,7 @@ CREATE VIEW vw_overdue_books_by_member AS
 SELECT members.name, COUNT(book_loans.book_id) as total_overdue
 FROM book_loans
 JOIN members ON book_loans.member_id = members.member_id
-WHERE book_loans.due_date < CURRENT_DATE AND book_loans.returned_date IS NULL
+WHERE book_loans.due_date < SYSDATE AND book_loans.returned_date IS NULL
 GROUP BY members.name;
 
 CREATE VIEW vw_books_on_loan_by_genre AS
