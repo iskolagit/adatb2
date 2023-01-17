@@ -26,7 +26,7 @@ CREATE TABLE book_loans (
   member_id INTEGER NOT NULL,
   loan_date DATE NOT NULL,
   due_date DATE NOT NULL,
-  returned_date DATE,
+  returned_date DATE
 )
 TABLESPACE users;
 
@@ -34,16 +34,16 @@ CREATE TABLE fines (
   fine_id NUMBER PRIMARY KEY,
   loan_id INTEGER NOT NULL,
   amount DECIMAL NOT NULL,
-  paid BOOLEAN NOT NULL DEFAULT 0,
+  paid number(1) DEFAULT 0 NOT NULL 
 )
 TABLESPACE users;
 
 --Foreign keys
 ALTER TABLE book_loans ADD CONSTRAINT fk_book_loans_books
-      FOREIGN KEY(book_id) REFERENCES book(book_id);
+      FOREIGN KEY(book_id) REFERENCES books(book_id);
 
 ALTER TABLE book_loans ADD CONSTRAINT fk_book_loans_members
-      FOREIGN KEY(member_id) REFERENCES book(member_id);
+      FOREIGN KEY(member_id) REFERENCES members(member_id);
 
 ALTER TABLE fines ADD CONSTRAINT fk_fines_book_loans
       FOREIGN KEY(loan_id) REFERENCES book_loans(loan_id);
@@ -53,9 +53,6 @@ COMMENT ON TABLE books IS 'Konyvek';
 COMMENT ON TABLE members IS 'Kolcsonzo szemelyek';
 COMMENT ON TABLE book_loans IS 'Kolcsonzesek';
 COMMENT ON TABLE fines IS 'Kolcsonzesi birsagok';
-
---Inserts
-
 
 --Backup tables
 CREATE TABLE books_bck AS SELECT * FROM books;
